@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>云创抽奖</title>
+  <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+  <div id="app">
+    <!-- 左侧机器面板 -->
+    <div id="machine">
+      <!-- 闪烁灯 -->
+      <div id="light-white" class="light"></div>
+      <div id="light-red" class="light"></div>
+      <!-- 开始/结束按钮 -->
+      <button id="start-btn" class="play" type="button"></button>
+      <!-- 总人数输入框 -->
+      <input type="mobile" id="total" class="text-box" value="79"/>
+      <span id="total-label" class="text-label">抽奖总数</span>
+      <!-- 抽取人数选择 -->
+      <select id="pick-num" class="text-box">
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+        <option value="6">6</option>
+        <option value="7">7</option>
+        <option value="8">8</option>
+        <option value="9">9</option>
+        <option value="10" selected="selected">10</option>
+        <option value="11">11</option>
+        <option value="12">12</option>
+      </select>
+      <span id="pick-num-label" class="text-label">本次人数</span>
+    </div>
+    <!-- 数字显示 -->
+    <div id="lucky-number">72</div>
+    <!-- 右侧看板 -->
+    <div id="board">
+      <span class="board-num">37</span>
+      <span class="board-num">7</span>
+      <span class="board-num">14</span>
+      <span class="board-num">38</span>
+      <span class="board-num">39</span>
+      <span class="board-num">22</span>
+      <span class="board-num">17</span>
+      <span class="board-num">41</span>
+      <span class="board-num">77</span>
+      <span class="board-num">57</span>
+      <span class="board-num">74</span>
+      <span class="board-num">5</span>
+    </div>
+    <!-- 右侧看板下方数字展示 -->
+    <span id="number-done" class="text-box">52</span>
+    <span id="number-left" class="text-box">27</span>
+    <span id="number-done-label" class="text-label">已抽</span>
+    <span id="number-left-label" class="text-label">剩余</span>
+  </div>
+  <script src="js/jquery.min.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,229 @@
+html, body {
+  width: 100%;
+  height: 100%;
+}
+
+button, input, select {
+  padding: 0;
+  margin: 0;
+  outline: 0 none;
+  border: 0 none;
+  background-color: transparent;
+  box-sizing: border-box;
+}
+
+option {
+  -moz-appearance:none;
+  -webkit-appearance:none;
+  appearance:none;
+}
+
+div, span {
+  box-sizing: border-box;
+}
+
+/* 整体body着色 */
+body {
+  padding: 0;
+  margin: 0;
+  background: #ffd89e;
+  overflow: hidden;
+  font-family: 'Courier New', Courier, monospace;
+}
+/* 整体背景图 */
+#app {
+  transform-origin: 0 0;
+  width: 1920px;
+  height: 1080px;
+  position: relative;
+  left: 50%;
+  background: url(../images/bg.png) center/100% 100% no-repeat;
+}
+/* 抽奖机图 */
+#machine {
+  width: 1270px;
+  height: 983px;
+  position: absolute;
+  left: 380px;
+  top: 0;
+  background: url(../images/number.png) center no-repeat;
+}
+
+/* 开始结束按钮 */
+#start-btn {
+  width: 186px;
+  height: 64px;
+  position: absolute;
+  left: 220px;
+  top: 655px;
+  background-position: center bottom;
+  background-repeat: no-repeat;
+}
+
+#start-btn.play {
+  background-image: url(../images/play_nor.png);
+}
+
+#start-btn.play:active {
+  background-image: url(../images/play_pre.png);
+}
+
+#start-btn.stop {
+  background-image: url(../images/stop_nor.png);
+}
+
+#start-btn.stop:active {
+  background-image: url(../images/stop_pre.png);
+}
+
+/* 闪灯 */
+.light {
+  width: 339px;
+  height: 179px;
+  position: absolute;
+  left: 108px;
+  top: 266px;
+  background-position: center;
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+}
+
+#light-white {
+  background-image: url(../images/white_off.png);
+  animation: white-flickering 1800ms infinite;
+}
+
+#light-red {
+  background-image: url(../images/red_on.png);
+  animation: red-flickering 1800ms infinite;
+}
+
+#light-white.active,
+#light-red.active {
+  animation-duration: 120ms;
+}
+
+@keyframes white-flickering {
+  0% {
+    background-image: url(../images/white_off.png);
+  }
+  50% {
+    background-image: url(../images/white_on.png);
+  }
+  100% {
+    background-image: url(../images/white_off.png);
+  }
+}
+
+@keyframes red-flickering {
+  0% {
+    background-image: url(../images/red_on.png);
+  }
+  50% {
+    background-image: url(../images/red_off.png);
+  }
+  100% {
+    background-image: url(../images/red_on.png);
+  }
+}
+
+/* 总人数输入 与 当前抽取人数选择 */
+.text-box {
+  width: 87px;
+  height: 32px;
+  position: absolute;
+  top: 495px;
+  font-size: 20px;
+  line-height: 32px;
+  text-align: center;
+}
+
+#total {
+  left: 141px;
+  background: #ffd89e;
+}
+
+#pick-num {
+  left: 319px;
+  padding-left: 28px;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+}
+
+#pick-num option:hover {
+  background: #ffd89e;
+}
+
+.text-label {
+  width: 87px;
+  height: 20px;
+  position: absolute;
+  top: 539px;
+  font-size: 20px;
+  line-height: 1;
+  text-align: center;
+  color: #f3f3f3;
+}
+
+#total-label {
+  left: 141px;
+}
+
+#pick-num-label {
+  left: 319px;
+}
+
+/* 数字显示 */
+#lucky-number {
+  text-align: center;
+  width: 101px;
+  height: 80px;
+  line-height: 80px;
+  font-size: 80px;
+  position: absolute;
+  left: 610px;
+  top: 314px;
+  color: #ff3e3e;
+}
+
+/* 看板 */
+#board {
+  width: 300px;
+  height: 100px;
+  position: absolute;
+  left: 1173px;
+  top: 428px;
+}
+
+#board > .board-num {
+  width: 50px;
+  height: 48px;
+  line-height: 1;
+  text-align: center;
+  float: left;
+  font-size: 48px;
+  margin: 0 40px 24px 0;
+  color: #ff3e3e;
+}
+
+/* 看板下方信息数字 */
+#number-done {
+  left: 1167px;
+  top: 796px;
+}
+
+#number-left {
+  left: 1346px;
+  top: 796px;
+}
+
+#number-done-label {
+  left: 1167px;
+  top: 840px;
+}
+
+#number-left-label {
+  left: 1346px;
+  top: 840px;
+}
