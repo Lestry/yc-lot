@@ -11,6 +11,13 @@ html, body {
   font-family: '方正像素123';
 }
 
+ul, ul li {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  box-sizing: border-box;
+}
+
 button, input, select {
   padding: 0;
   margin: 0;
@@ -72,7 +79,8 @@ body {
   background-image: url(../assets/play_nor.png);
 }
 
-#start-btn.play:active {
+#start-btn.play:active,
+#start-btn.play:disabled {
   background-image: url(../assets/play_pre.png);
 }
 
@@ -80,7 +88,8 @@ body {
   background-image: url(../assets/stop_nor.png);
 }
 
-#start-btn.stop:active {
+#start-btn.stop:active,
+#start-btn.stop:disabled {
   background-image: url(../assets/stop_pre.png);
 }
 
@@ -183,16 +192,58 @@ body {
 }
 
 /* 数字显示 */
-#lucky-number {
+.lucky-number {
   text-align: center;
   width: 101px;
-  height: 80px;
+  height: 127px;
   line-height: 80px;
   font-size: 80px;
   position: absolute;
   left: 610px;
-  top: 314px;
+  top: 295px;
   color: #ff3e3e;
+  overflow: hidden;
+}
+
+.lucky-number .scroller {
+  width: 50%;
+  padding: 0 0 0 11px;
+  float: left;
+  animation: scroll 8500ms infinite linear;
+}
+
+.lucky-number .scroller.right {
+  padding: 0 11px 0 0;
+  animation: scroll-reverse 7300ms infinite linear;
+}
+
+.lucky-number .scroller > li {
+  width: 100%;
+  height: 80px;
+  line-height: 80px;
+  font-size: 80px;
+}
+
+#lucky-number.active .scroller {
+  animation-duration: 300ms;
+}
+
+@keyframes scroll {
+  0% {
+    transform: translateY(-80px);
+  }
+  100% {
+    transform: translateY(-880px);
+  }
+}
+
+@keyframes scroll-reverse {
+  0% {
+    transform: translateY(-880px);
+  }
+  100% {
+    transform: translateY(-80px);
+  }
 }
 
 /* 看板 */
@@ -234,4 +285,84 @@ body {
 #number-left-label {
   left: 1346px;
   top: 840px;
+}
+
+/* 抽奖结果面板 */
+#result-panel {
+  display: none;
+  width: 1270px;
+  position: absolute;
+  left: 380px;
+  top: 200px;
+  font-size: 28px;
+  color: #ff3e3e;
+  padding: 20px;
+  background: #fefefe;
+  border-radius: 10px;
+}
+
+#result-panel .result-row {
+  height: 32px;
+  line-height: 32px;
+  margin-bottom: 8px;
+}
+
+#result-panel .result-row:last-child {
+  margin: 0;
+}
+
+/* 功能性按钮 */
+#foot {
+  position: fixed;
+  width: 100%;
+  height: 20px;
+  bottom: 0;
+  left: 0;
+  z-index: 10000;
+}
+
+.hidden-btn {
+  transition: opacity 500ms;
+  opacity: 0;
+  height: 20px;
+  line-height: 20px;
+  width: 40px;
+  text-align: center;
+  background: #ff9e12;
+}
+
+#reset-btn {
+  float: left;
+}
+
+#result-btn {
+  float: right;
+}
+
+/* 数字用的动画 */
+.left-in {
+  -webkit-animation-duration: 1000ms;
+  -moz-animation-duration: 1000ms;
+  -o-animation-duration: 1000ms;
+  animation-duration: 1000ms;
+  -webkit-animation-fill-mode: both;
+  -moz-animation-fill-mode: both;
+  -o-animation-fill-mode: both;
+  animation-fill-mode: both;
+  animation-name: leftIn;
+}
+
+@keyframes leftIn {
+  0% {
+    opacity: 0;
+    transform: scale(1,1) translateY(-1500%);
+  }
+  50%, 70%, 90% {
+    opacity: 1;
+    transform: scale(1.1,1.1) translateY(0);
+  }
+  100%, 60%, 80% {
+    opacity: 1;
+    transform: scale(1,1) translateY(0);
+  }
 }
