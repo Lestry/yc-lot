@@ -132,9 +132,10 @@
       };
     }
     const hasData = _data.total.length !== 0 || _data.lot.length !== 0;
+    const totalNum = _data.total.length + _data.lot.length;
     // 总数输入框状态
     $('#total')
-      .val(_data.total.length)
+      .val(totalNum)
       .prop('disabled', hasData);
     // 开始按钮初始化
     $('#start-btn')
