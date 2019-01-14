@@ -132,7 +132,7 @@
       };
     }
     const hasData = _data.total.length !== 0 || _data.lot.length !== 0;
-    const totalNum = _data.total.length + _data.lot.length;
+    const totalNum = _data.total.length + _.flatten(_data.lot).length;
     // 总数输入框状态
     $('#total')
       .val(totalNum)
