@@ -46,9 +46,12 @@
       // 清空锦鲤池
       $('#board').html('');
       // 开始滚动号码
-      $('#lucky-number').toggleClass('active');
+      $('#lucky-number').addClass('active');
+      // 控制杆下拉
+      $('#stick').addClass('active');
       // 闪灯加快
-      toggleLight();
+      $('#light-white').addClass('active');
+      $('#light-red').addClass('active');
     } else if (btn.attr('class') === 'stop') {
       // 临时将按钮设置为禁用 防止连点
       btn.attr('class', 'play').prop('disabled', true);
@@ -79,11 +82,14 @@
         }, 800);
       } else {
         // 停止数字滚动
-        $('#lucky-number').toggleClass('active');
+        $('#lucky-number').removeClass('active');
         // 恢复灯闪动
-        toggleLight();
+        $('#light-white').removeClass('active');
+        $('#light-red').removeClass('active');
         // 恢复play按钮
         $('#start-btn').prop('disabled', false);
+        // 控制杆恢复
+        $('#stick').removeClass('active');
       }
     };
     // 开始执行
@@ -105,12 +111,6 @@
       }
       updateData(data);
     }
-  }
-
-  // 灯
-  function toggleLight() {
-    $('#light-white').toggleClass('active');
-    $('#light-red').toggleClass('active');
   }
 
   // 加载数据

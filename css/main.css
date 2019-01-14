@@ -64,6 +64,55 @@ body {
   background: url(../assets/number.png) center no-repeat;
 }
 
+/* 控制杆 */
+#stick {
+  position: absolute;
+  width: 44px;
+  height: 84px;
+  left: 876px;
+  top: 450px;
+}
+
+#stick .ball {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-image: linear-gradient(-90deg, #e30800 0%, #ffb74f 100%);
+  position: absolute;
+  top: 15px;
+  right: 0;
+  z-index: 2;
+  transition: all 300ms;
+}
+
+#stick .bar-x {
+  width: 32px;
+  height: 8px;
+  background-image: linear-gradient(90deg, #8f322a 0%, #b33e35 100%);
+  position: absolute;
+  bottom: 0px;
+  right: 16px;
+}
+
+#stick .bar-y {
+  width: 8px;
+  height: 40px;
+  background-image: linear-gradient(90deg, #8f322a 0%, #b33e35 100%);
+  position: absolute;
+  top: 44px;
+  right: 16px;
+  transform-origin: center 36px;
+  transition: all 300ms;
+}
+
+#stick.active .bar-y {
+  transform: rotateX(120deg);
+}
+
+#stick.active .ball {
+  top: 85px;
+}
+
 /* 开始结束按钮 */
 #start-btn {
   width: 186px;
