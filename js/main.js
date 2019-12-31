@@ -50,8 +50,7 @@
       // 控制杆下拉
       $('#stick').addClass('active');
       // 闪灯加快
-      $('#light-white').addClass('active');
-      $('#light-red').addClass('active');
+      $('#light').addClass('active');
     } else if (btn.attr('class') === 'stop') {
       // 临时将按钮设置为禁用 防止连点
       btn.attr('class', 'play').prop('disabled', true);
@@ -84,8 +83,7 @@
         // 停止数字滚动
         $('#lucky-number').removeClass('active');
         // 恢复灯闪动
-        $('#light-white').removeClass('active');
-        $('#light-red').removeClass('active');
+        $('#light').removeClass('active');
         // 恢复play按钮
         $('#start-btn').prop('disabled', false);
         // 控制杆恢复

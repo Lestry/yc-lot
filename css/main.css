@@ -1,6 +1,6 @@
 @font-face {
-  font-family: "方正像素123";
-  src: url('../assets/方正像素12.TTF') format('truetype');
+  font-family: "抽奖字体";
+  src: url('../assets/DIN-Regular.otf') format('truetype');
   font-weight: normal;
   font-style: normal;
 }
@@ -8,7 +8,7 @@
 html, body {
   width: 100%;
   height: 100%;
-  font-family: '方正像素123';
+  font-family: '抽奖字体';
 }
 
 ul, ul li {
@@ -25,7 +25,7 @@ button, input, select {
   border: 0 none;
   background-color: transparent;
   box-sizing: border-box;
-  font-family: '方正像素123';
+  font-family: '抽奖字体';
 }
 
 option {
@@ -56,11 +56,11 @@ body {
 }
 /* 抽奖机图 */
 #machine {
-  width: 1270px;
-  height: 983px;
+  width: 1286px;
+  height: 764px;
   position: absolute;
-  left: 380px;
-  top: 0;
+  left: 302px;
+  top: 171px;
   background: url(../assets/number.png) center no-repeat;
 }
 
@@ -69,8 +69,8 @@ body {
   position: absolute;
   width: 44px;
   height: 84px;
-  left: 876px;
-  top: 450px;
+  left: 939px;
+  top: 407px;
 }
 
 #stick .ball {
@@ -118,8 +118,8 @@ body {
   width: 186px;
   height: 64px;
   position: absolute;
-  left: 220px;
-  top: 655px;
+  left: 337px;
+  top: 441px;
   background-position: center bottom;
   background-repeat: no-repeat;
 }
@@ -143,53 +143,32 @@ body {
 }
 
 /* 闪灯 */
-.light {
+#light {
   width: 339px;
   height: 179px;
   position: absolute;
-  left: 108px;
-  top: 266px;
+  left: 264px;
+  top: 71px;
   background-position: center;
   background-size: 100% 100%;
   background-repeat: no-repeat;
+  background-image: url(../assets/Red_on.png);
+  animation: light-flickering 1800ms infinite;
 }
 
-#light-white {
-  background-image: url(../assets/white_off.png);
-  animation: white-flickering 1800ms infinite;
-}
-
-#light-red {
-  background-image: url(../assets/red_on.png);
-  animation: red-flickering 1800ms infinite;
-}
-
-#light-white.active,
-#light-red.active {
+#light.active {
   animation-duration: 120ms;
 }
 
-@keyframes white-flickering {
+@keyframes light-flickering {
   0% {
-    background-image: url(../assets/white_off.png);
+    background-image: url(../assets/Red_on.png);
   }
   50% {
-    background-image: url(../assets/white_on.png);
+    background-image: url(../assets/Blue_on.png);
   }
   100% {
-    background-image: url(../assets/white_off.png);
-  }
-}
-
-@keyframes red-flickering {
-  0% {
-    background-image: url(../assets/red_on.png);
-  }
-  50% {
-    background-image: url(../assets/red_off.png);
-  }
-  100% {
-    background-image: url(../assets/red_on.png);
+    background-image: url(../assets/Red_on.png);
   }
 }
 
@@ -198,20 +177,22 @@ body {
   width: 87px;
   height: 32px;
   position: absolute;
-  top: 495px;
-  font-size: 20px;
+  top: 299px;
+  font-size: 22px;
+  font-weight: 600;
   line-height: 32px;
   text-align: center;
 }
 
 #total {
-  left: 141px;
+  left: 298px;
   background: #ffd89e;
 }
 
 #pick-num {
-  left: 319px;
+  left: 478px;
   padding-left: 28px;
+  color: #ff3e3e;
   appearance: none;
   -webkit-appearance: none;
   -moz-appearance: none;
@@ -225,19 +206,19 @@ body {
   width: 87px;
   height: 20px;
   position: absolute;
-  top: 539px;
-  font-size: 20px;
+  top: 343px;
+  font-size: 18px;
   line-height: 1;
   text-align: center;
   color: #f3f3f3;
 }
 
 #total-label {
-  left: 141px;
+  left: 298px;
 }
 
 #pick-num-label {
-  left: 319px;
+  left: 478px;
 }
 
 /* 数字显示 */
@@ -248,8 +229,8 @@ body {
   line-height: 80px;
   font-size: 80px;
   position: absolute;
-  left: 610px;
-  top: 295px;
+  left: 685px;
+  top: 268px;
   color: #ff3e3e;
   overflow: hidden;
 }
@@ -300,8 +281,8 @@ body {
   width: 300px;
   height: 100px;
   position: absolute;
-  left: 1173px;
-  top: 428px;
+  left: 1169px;
+  top: 436px;
 }
 
 #board > .board-num {
@@ -317,23 +298,29 @@ body {
 
 /* 看板下方信息数字 */
 #number-done {
-  left: 1167px;
-  top: 796px;
+  left: 1155px;
+  top: 826px;
+  font-weight: 600;
+  font-size: 22px;
 }
 
 #number-left {
-  left: 1346px;
-  top: 796px;
+  left: 1334px;
+  top: 826px;
+  font-weight: 600;
+  font-size: 22px;
 }
 
 #number-done-label {
-  left: 1167px;
-  top: 840px;
+  left: 1155px;
+  top: 878px;
+  font-size: 18px;
 }
 
 #number-left-label {
-  left: 1346px;
-  top: 840px;
+  left: 1334px;
+  top: 878px;
+  font-size: 18px;
 }
 
 /* 抽奖结果面板 */
