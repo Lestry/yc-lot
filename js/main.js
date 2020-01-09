@@ -15,9 +15,20 @@
     $('#reset-btn').on('click', resetFunc);
     // 绑定结果按钮事件
     $('#result-btn').on('click', resultSwitch);
+    // 绑定音乐开始与关闭
+    $('body').on('click', toggleMusic);
     // 绑定foot显示/隐藏
     footOut();
   });
+
+  // 音乐开启/关闭
+  function toggleMusic() {
+    if (document.getElementById('bgm')) {
+      $('#bgm').remove();
+    } else {
+      $('body').append(`<embed src="assets/bgm.mp3" loop=true autostart=true hidden=true id="bgm"/>`);
+    }
+  }
 
   // 底部鼠标移入
   function footIn() {
