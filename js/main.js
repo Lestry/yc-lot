@@ -1,4 +1,5 @@
 (function(global, doc, $) {
+  const CACHE_KEY = 'tj_lot_data_cache';
   // 加载缓存数据
   let data = loadData();
   // main func
@@ -20,6 +21,37 @@
     // 绑定foot显示/隐藏
     footOut();
   });
+
+  /**
+  * 将对象序列化后将其值保存在一个键值对中
+  * @param key 键名
+  * @param obj 需要保存的对象
+  */
+  const setObjAsOne = (key, obj) => {
+    if (typeof obj === 'object') {
+      const objData = JSON.stringify(obj);
+      localStorage.setItem(key, objData);
+    } else {
+      throw new Error('该方法[setObjAsOne]需要一个对象作为输入参数');
+    }
+  };
+
+  /**
+    * 将缓存的序列化对象取出并还原成Js对象
+    * @param key 键名
+    * @returns {null} 获取的缓存中的对象
+    */
+  const getObjAsOne = (key) => {
+    const objData = localStorage.getItem(key);
+    if (objData !== null) {
+      try {
+        return (JSON.parse(objData));
+      } catch (e) {
+        throw new Error(e);
+      }
+    }
+    return null;
+  };
 
   // 音乐开启/关闭
   function toggleMusic() {
@@ -124,21 +156,8 @@
 
   // 加载数据
   function loadData() {
-    let _data = {
-      pool: {},
-      loted: []
-    }
     // 读取缓存数据
-    const cacheData = localStorage.getItem('__tj_log_data__');
-    // 如果不存在缓存数据 则使用原始数据
-    if (cacheData) {
-      try {
-        // 优先读缓存数据
-        _data = JSON.parse(cacheData) || { pool: {}, loted: [] };
-      } catch (error) {
-        _data = { pool: {}, loted: [] };
-      }
-    }
+    let _data = getObjAsOne(CACHE_KEY) || { pool: {}, loted: [] };
     // 进行数据异常处理
     if (_.keys(_data.pool).length === 0) {
       _data.pool = global.TJ_2020_BASE_DATA;
@@ -165,7 +184,7 @@
   function updateData(_data) {
     _data = _data || data;
     // 缓存数据
-    localStorage.setItem('__yc_lot_data__', JSON.stringify(_data));
+    setObjAsOne(CACHE_KEY, _data);
     // 配置到结果集
     setResultRow(_data.lot);
     // 更新已抽和剩余
