@@ -36,15 +36,17 @@ option {
 
 div, span {
   box-sizing: border-box;
+  cursor: default;
 }
 
 /* 整体body着色 */
 body {
   padding: 0;
   margin: 0;
-  background: #000;
+  background-image: linear-gradient(180deg, rgb(146,1,0), rgb(117,1,1) 80%, rgb(117,1,1) 100%);
   overflow: hidden;
 }
+
 /* 整体背景图 */
 #app {
   transform-origin: 0 0;
@@ -54,273 +56,252 @@ body {
   left: 50%;
   background: url(../assets/bg.png) center/100% 100% no-repeat;
 }
-/* 抽奖机图 */
-#machine {
-  width: 1286px;
-  height: 764px;
-  position: absolute;
-  left: 302px;
-  top: 171px;
-  background: url(../assets/number.png) center no-repeat;
-}
 
-/* 控制杆 */
-#stick {
+/* 背景音乐开关 */
+#btn-bgm {
   position: absolute;
-  width: 44px;
-  height: 84px;
-  left: 939px;
-  top: 407px;
-}
-
-#stick .ball {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  background-image: linear-gradient(-90deg, #e30800 0%, #ffb74f 100%);
-  position: absolute;
-  top: 15px;
-  right: 0;
-  z-index: 2;
-  transition: all 300ms;
-}
-
-#stick .bar-x {
+  right: 5px;
+  top: 5px;
+  z-index: 999;
+  border: 2px solid #666;
   width: 32px;
-  height: 8px;
-  background-image: linear-gradient(90deg, #8f322a 0%, #b33e35 100%);
+  height: 32px;
+  border-radius: 32px;
+  background: url(../assets/icon_bgm.png) center/80% 80% no-repeat;
+  cursor: pointer;
+}
+
+#btn-bgm.disabled::after {
+  content: '';
+  display: block;
+  height: 28px;
+  width: 2px;
+  background-color: #666;
   position: absolute;
-  bottom: 0px;
-  right: 16px;
+  top: 0;
+  left: 13px;
+  transform: rotateZ(45deg);
 }
 
-#stick .bar-y {
-  width: 8px;
-  height: 40px;
-  background-image: linear-gradient(90deg, #8f322a 0%, #b33e35 100%);
-  position: absolute;
-  top: 44px;
-  right: 16px;
-  transform-origin: center 36px;
-  transition: all 300ms;
-}
-
-#stick.active .bar-y {
-  transform: rotateX(120deg);
-}
-
-#stick.active .ball {
-  top: 85px;
-}
-
-/* 开始结束按钮 */
-#start-btn {
-  width: 186px;
-  height: 64px;
-  position: absolute;
-  left: 337px;
-  top: 441px;
-  background-position: center bottom;
-  background-repeat: no-repeat;
-}
-
-#start-btn.play {
-  background-image: url(../assets/play_nor.png);
-}
-
-#start-btn.play:active,
-#start-btn.play:disabled {
-  background-image: url(../assets/play_pre.png);
-}
-
-#start-btn.stop {
-  background-image: url(../assets/stop_nor.png);
-}
-
-#start-btn.stop:active,
-#start-btn.stop:disabled {
-  background-image: url(../assets/stop_pre.png);
-}
-
-/* 闪灯 */
-#light {
-  width: 339px;
-  height: 179px;
-  position: absolute;
-  left: 264px;
-  top: 71px;
-  background-position: center;
-  background-size: 100% 100%;
-  background-repeat: no-repeat;
-  background-image: url(../assets/r_on.png);
-  animation: light-flickering 1800ms infinite;
-}
-
-#light.active {
-  animation-duration: 120ms;
-}
-
-@keyframes light-flickering {
-  0% {
-    background-image: url(../assets/r_on.png);
-  }
-  50% {
-    background-image: url(../assets/b_on.png);
-  }
-  100% {
-    background-image: url(../assets/r_on.png);
-  }
-}
-
-/* 总人数输入 与 当前抽取人数选择 */
+/* 全局数字显示小框 四处：总人数 抽取人数 已抽 剩余 */
 .text-box {
   width: 87px;
   height: 32px;
   position: absolute;
-  top: 299px;
-  font-size: 22px;
+  font-size: 24px;
   font-weight: 600;
   line-height: 32px;
   text-align: center;
+  color: #ab0600;
 }
 
-#total {
-  left: 298px;
-  background: #ffd89e;
+/* 总人数 与 当前抽取人数选择 */
+#total-and-pick {
+  position: absolute;
+  top: 320px;
+  left: 500px;
+}
+
+#total-num {
+  color: #fef5cb;
+  left: 83px;
 }
 
 #pick-num {
-  left: 478px;
+  left: 308px;
   padding-left: 28px;
-  color: #ff3e3e;
+  color: #fef5cb;
   appearance: none;
   -webkit-appearance: none;
   -moz-appearance: none;
+  position: relative;
+}
+
+#pick-num option {
+  color: #ab0600;
 }
 
 #pick-num option:hover {
-  background: #ffd89e;
+  background: #fef5cb;
 }
 
-.text-label {
-  width: 87px;
-  height: 20px;
+#pick-arrow-down {
   position: absolute;
-  top: 343px;
-  font-size: 18px;
-  line-height: 1;
-  text-align: center;
-  color: #f3f3f3;
-}
-
-#total-label {
-  left: 298px;
-}
-
-#pick-num-label {
-  left: 478px;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-color: #fef5cb transparent transparent transparent;
+  border-width: 6px;
+  top: 14px;
+  left: 375px;
+  pointer-events: none;
 }
 
 /* 数字显示 */
-.lucky-number {
-  text-align: center;
-  width: 101px;
-  height: 127px;
-  line-height: 80px;
-  font-size: 80px;
+.lucky-show {
   position: absolute;
-  left: 685px;
-  top: 268px;
+  top: 433px;
   color: #ff3e3e;
-  overflow: hidden;
+  overflow: visible;
+  height: 130px;
+  line-height: 118px;
+  font-size: 120px;
+  text-align: center;
 }
 
-.lucky-number .scroller {
-  width: 50%;
-  padding: 0 0 0 11px;
-  float: left;
-  animation: scroll 8500ms infinite linear;
+#lucky-number {
+  width: 186px;
+  left: 743px;
+  text-align: right;
 }
 
-.lucky-number .scroller.right {
-  padding: 0 11px 0 0;
-  animation: scroll-reverse 7300ms infinite linear;
+#lucky-group-disabled {
+  display: none;
+  position: absolute;
+  left: 0;
+  top: 0;
 }
 
-.lucky-number .scroller > li {
+#lucky-group-disabled::before {
+  content: '';
+  width: 100px;
+  height: 100px;
+  position: absolute;
+  left: 7px;
+  top: 5px;
+  border-radius: 100px;
+  border: 4px solid #ff3e3e;
+}
+
+#lucky-group-disabled::after {
+  content: '';
+  position: absolute;
+  width: 4px;
+  height: 102px;
+  left: 59px;
+  top: 9px;
+  background-color: #ff3e3e;
+  transform: rotateZ(45deg);
+}
+
+#lucky-group {
+  width: 120px;
+  left: 567px;
+}
+
+.lucky-text-show {
   width: 100%;
-  height: 80px;
-  line-height: 80px;
-  font-size: 80px;
+  height: 100%;
+  background-position: 0 0;
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  overflow: visible;
+  white-space: nowrap;
 }
 
-#lucky-number.active .scroller {
-  animation-duration: 300ms;
+.lucky-group-text {
+  background-image: url(../assets/group_bg.png);
 }
 
-@keyframes scroll {
-  0% {
-    transform: translateY(-80px);
-  }
-  100% {
-    transform: translateY(-880px);
-  }
+.lucky-number-text {
+  background-image: url(../assets/number_bg.png);
+  padding-right: 4px;
 }
 
-@keyframes scroll-reverse {
-  0% {
-    transform: translateY(-880px);
-  }
-  100% {
-    transform: translateY(-80px);
-  }
+/* 开始结束按钮 */
+#btn-lot {
+  width: 263px;
+  height: 103px;
+  position: absolute;
+  left: 617px;
+  top: 639px;
+  background-size: 100% 100%;
+  background-position: 0 0;
+  background-repeat: no-repeat;
+}
+
+#btn-lot.play {
+  background-image: url(../assets/btn_start_up.png);
+}
+
+#btn-lot.play:active,
+#btn-lot.play:disabled {
+  background-image: url(../assets/btn_start_down.png);
+  background-position: 0 12px;
+}
+
+#btn-lot.stop {
+  background-image: url(../assets/btn_stop_up.png);
+}
+
+#btn-lot.stop:active,
+#btn-lot.stop:disabled {
+  background-image: url(../assets/btn_stop_down.png);
+  background-position: 0 12px;
+}
+
+/* 抽奖模式选择 */
+#lot-type-container {
+  position: absolute;
+  left: 618px;
+  top: 806px;
+  color: #fef5cb;
+  font-size: 14px;
+  line-height: 13px;
+  cursor: default;
+}
+
+#lot-type-container > input {
+  padding-right: 2px;
+  vertical-align: top;
+  cursor: pointer;
+}
+#lot-type-container > label {
+  margin-right: 16px;
+  vertical-align: top;
+  cursor: pointer;
 }
 
 /* 看板 */
 #board {
-  width: 300px;
+  width: 380px;
   height: 100px;
   position: absolute;
-  left: 1169px;
-  top: 436px;
+  left: 1093px;
+  top: 352px;
 }
 
 #board > .board-num {
-  width: 50px;
-  height: 48px;
-  line-height: 1;
+  background: url(../assets/board_bg.png) 0 0/100% 100% no-repeat;
+  width: 64px;
+  height: 64px;
+  line-height: 58px;
   text-align: center;
   float: left;
-  font-size: 48px;
-  margin: 0 44px 24px 0;
+  font-size: 32px;
+  margin: 0 12px 22px 0;
   color: #ff3e3e;
 }
 
 /* 看板下方信息数字 */
+#lot-count-info {
+  position: absolute;
+  top: 749px;
+  left: 1136px;
+}
+
 #number-done {
-  left: 1155px;
-  top: 826px;
+  top: 0;
+  left: 10px;
   font-weight: 600;
-  font-size: 22px;
+  font-size: 24px;
 }
 
 #number-left {
-  left: 1334px;
-  top: 826px;
+  top: 0;
+  left: 185px;
   font-weight: 600;
-  font-size: 22px;
-}
-
-#number-done-label {
-  left: 1155px;
-  top: 878px;
-  font-size: 18px;
-}
-
-#number-left-label {
-  left: 1334px;
-  top: 878px;
-  font-size: 18px;
+  font-size: 24px;
 }
 
 /* 抽奖结果面板 */
@@ -329,18 +310,21 @@ body {
   width: 1270px;
   position: absolute;
   left: 380px;
-  top: 200px;
-  font-size: 28px;
+  top: 70px;
+  font-size: 24px;
   color: #ff3e3e;
-  padding: 20px;
+  padding: 16px;
   background: #fefefe;
   border-radius: 10px;
 }
 
 #result-panel .result-row {
-  height: 32px;
   line-height: 32px;
-  margin-bottom: 8px;
+  margin-bottom: 12px;
+}
+
+.result-content > span {
+  white-space: nowrap;
 }
 
 #result-panel .result-row:last-child {

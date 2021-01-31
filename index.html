@@ -8,117 +8,105 @@
   <link rel="stylesheet" href="css/main.css">
 </head>
 <body>
+  <!-- 背景音乐按钮 -->
+  <div id="btn-bgm" class="disabled"></div>
   <div id="app">
-    <!-- 抽奖 -->
-    <div id="lot-panel">
-      <!-- 左侧机器面板 -->
-      <div id="machine">
-        <!-- 闪烁灯 -->
-        <div id="light"></div>
-        <!-- 开始/结束按钮 -->
-        <button id="start-btn" class="play" type="button"></button>
-        <!-- 总人数输入框 -->
-        <input type="mobile" id="total" class="text-box" value="79"/>
-        <span id="total-label" class="text-label">抽奖总数</span>
-        <!-- 抽奖模式选择 -->
-        <input type="radio" name="lot-type" value="0" id="lot-group"/>
-        <input type="radio" name="lot-type" value="1" id="lot-person"/>
-        <!-- 抽取人数选择 -->
-        <select id="pick-num" class="text-box">
-          <option value="1">1</option>
-          <option value="2">2</option>
-          <option value="3">3</option>
-          <option value="4">4</option>
-          <option value="5">5</option>
-          <option value="6">6</option>
-          <option value="7">7</option>
-          <option value="8">8</option>
-          <option value="9">9</option>
-          <option value="10" selected="selected">10</option>
-          <option value="11">11</option>
-          <option value="12">12</option>
-        </select>
-        <span id="pick-num-label" class="text-label">本次人数</span>
-      </div>
-      <!-- 控制杆 -->
-      <div id="stick">
-        <div class="ball"></div>
-        <div class="bar-x"></div>
-        <div class="bar-y"></div>
-      </div>
-      <!-- 数字显示 -->
-      <div id="lucky-number" class="lucky-number">
-        <ul class="scroller left">
-          <li>9</li>
-          <li>0</li>
-          <li>1</li>
-          <li>2</li>
-          <li>3</li>
-          <li>4</li>
-          <li>5</li>
-          <li>6</li>
-          <li>7</li>
-          <li>8</li>
-          <li>9</li>
-          <li>0</li>
-          <li>1</li>
-        </ul>
-        <ul class="scroller right">
-          <li>9</li>
-          <li>0</li>
-          <li>1</li>
-          <li>2</li>
-          <li>3</li>
-          <li>4</li>
-          <li>5</li>
-          <li>6</li>
-          <li>7</li>
-          <li>8</li>
-          <li>9</li>
-          <li>0</li>
-          <li>1</li>
-        </ul>
-      </div>
-      <!-- 右侧看板 -->
-      <div id="board">
-        <!-- <span class="board-num">37</span>
-        <span class="board-num">7</span>
-        <span class="board-num">14</span>
-        <span class="board-num">38</span>
-        <span class="board-num">39</span>
-        <span class="board-num">22</span>
-        <span class="board-num">17</span>
-        <span class="board-num">41</span>
-        <span class="board-num">77</span>
-        <span class="board-num">57</span>
-        <span class="board-num">74</span>
-        <span class="board-num">5</span> -->
-      </div>
-      <!-- 右侧看板下方数字展示 -->
-      <span id="number-done" class="text-box"></span>
-      <span id="number-left" class="text-box"></span>
-      <span id="number-done-label" class="text-label">已抽</span>
-      <span id="number-left-label" class="text-label">剩余</span>
+  <!-- 开始/结束按钮 -->
+  <button id="btn-lot" class="play" type="button"></button>
+  <!-- 总人数 和 抽取人数 -->
+  <div id="total-and-pick">
+    <span id="total-num" class="text-box">0</span>
+    <select id="pick-num" class="text-box">
+      <option value="1">1</option>
+      <option value="2">2</option>
+      <option value="3">3</option>
+      <option value="4">4</option>
+      <option value="5">5</option>
+      <option value="6">6</option>
+      <option value="7">7</option>
+      <option value="8">8</option>
+      <option value="9">9</option>
+      <option value="10" selected="selected">10</option>
+      <option value="11">11</option>
+      <option value="12">12</option>
+      <option value="13">13</option>
+      <option value="14">14</option>
+      <option value="15">15</option>
+      <option value="16">16</option>
+      <option value="17">17</option>
+      <option value="18">18</option>
+      <option value="19">19</option>
+      <option value="20">20</option>
+    </select>
+    <div id="pick-arrow-down"></div>
+  </div>
+  <!-- 抽奖模式选择 -->
+  <div id="lot-type-container">
+    <input type="radio" name="lot-type" value="0" id="lot-group" checked/>
+    <label for="lot-group" class="radio-label">抽组</label>
+    <input type="radio" name="lot-type" value="1" id="lot-person"/>
+    <label for="lot-person" class="radio-label">抽人</label>
+    <input type="radio" name="lot-type" value="2" id="lot-person-no-group"/>
+    <label for="lot-person-no-group" class="radio-label">抽人(无分组)</label>
+  </div>
+  <!-- 组号显示 -->
+  <div id="lucky-group" class="lucky-show">
+    <div id="lucky-group-text" class="lucky-text-show lucky-group-text">
+      ?
     </div>
-    <!-- 结果面板 -->
-    <div id="result-panel">
-      <!-- <div class="result-row">
-        <span class="result-title">第1轮（10）:</span>
-        <span class="result-content">1、14、24、25、26、77、55、44、22、27</span>
-      </div>
-      <div class="result-row">
-        <span class="result-title">第1轮（10）:</span>
-        <span class="result-content">1、14、24、25、26、77、55、44、22、27</span>
-      </div>
-      <div class="result-row">
-        <span class="result-title">第1轮（10）:</span>
-        <span class="result-content">1、14、24、25、26、77、55、44、22、27</span>
-      </div>
-      <div class="result-row">
-        <span class="result-title">第1轮（10）:</span>
-        <span class="result-content">1、14、24、25、26、77、55、44、22、27</span>
-      </div> -->
+    <div id="lucky-group-disabled" class="lucky-text-show lucky-group-text"></div>
+  </div>
+  <!-- 数字显示 -->
+  <div id="lucky-number" class="lucky-show">
+    <div id="lucky-number-text" class="lucky-text-show lucky-number-text">
+      ???
     </div>
+  </div>
+  <!-- 右侧看板 -->
+  <div id="board">
+    <!-- <span class="board-num">137</span>
+    <span class="board-num">7</span>
+    <span class="board-num">114</span>
+    <span class="board-num">38</span>
+    <span class="board-num">39</span>
+    <span class="board-num">22</span>
+    <span class="board-num">17</span>
+    <span class="board-num">141</span>
+    <span class="board-num">77</span>
+    <span class="board-num">157</span>
+    <span class="board-num">74</span>
+    <span class="board-num">5</span>
+    <span class="board-num">137</span>
+    <span class="board-num">7</span>
+    <span class="board-num">114</span>
+    <span class="board-num">38</span>
+    <span class="board-num">39</span>
+    <span class="board-num">22</span>
+    <span class="board-num">17</span> -->
+  </div>
+  <!-- 右侧看板下方数字展示 -->
+  <div id="lot-count-info">
+    <span id="number-done" class="text-box">0</span>
+    <span id="number-left" class="text-box">0</span>
+  </div>
+  <!-- 结果面板 -->
+  <div id="result-panel">
+    <!-- <div class="result-row">
+      <span class="result-title">第1轮（10）:</span>
+      <span class="result-content">1、14、24、25、26、77、55、44、22、27</span>
+    </div>
+    <div class="result-row">
+      <span class="result-title">第1轮（10）:</span>
+      <span class="result-content">1、14、24、25、26、77、55、44、22、27</span>
+    </div>
+    <div class="result-row">
+      <span class="result-title">第1轮（10）:</span>
+      <span class="result-content">1、14、24、25、26、77、55、44、22、27</span>
+    </div>
+    <div class="result-row">
+      <span class="result-title">第1轮（10）:</span>
+      <span class="result-content">1、14、24、25、26、77、55、44、22、27</span>
+    </div> -->
   </div>
   <div id="foot">
     <button type="button" class="hidden-btn" id="result-btn">
