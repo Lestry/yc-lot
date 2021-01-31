@@ -20,6 +20,9 @@
         <!-- 总人数输入框 -->
         <input type="mobile" id="total" class="text-box" value="79"/>
         <span id="total-label" class="text-label">抽奖总数</span>
+        <!-- 抽奖模式选择 -->
+        <input type="radio" name="lot-type" value="0" id="lot-group"/>
+        <input type="radio" name="lot-type" value="1" id="lot-person"/>
         <!-- 抽取人数选择 -->
         <select id="pick-num" class="text-box">
           <option value="1">1</option>
@@ -127,6 +130,7 @@
   </div>
   <script src="js/jquery.min.js"></script>
   <script src="js/lodash.min.js"></script>
+  <script src="js/basedata.js"></script>
   <script src="js/main.js"></script>
 </body>
 </html>

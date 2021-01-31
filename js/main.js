@@ -1,4 +1,4 @@
-;(function(global, doc, $) {
+(function(global, doc, $) {
   // 加载缓存数据
   let data = loadData();
   // main func
@@ -125,21 +125,26 @@
   // 加载数据
   function loadData() {
     let _data = {
-      total: [],
-      lot: []
+      pool: {},
+      loted: []
     }
-    try {
-      // 优先读缓存数据
-      _data = JSON.parse(localStorage.getItem('__yc_lot_data__')) || {
-        total: [],
-        lot: []
-      };
-    } catch (error) {
-      _data = {
-        total: [],
-        lot: []
-      };
+    // 读取缓存数据
+    const cacheData = localStorage.getItem('__tj_log_data__');
+    // 如果不存在缓存数据 则使用原始数据
+    if (cacheData) {
+      try {
+        // 优先读缓存数据
+        _data = JSON.parse(cacheData) || { pool: {}, loted: [] };
+      } catch (error) {
+        _data = { pool: {}, loted: [] };
+      }
     }
+    // 进行数据异常处理
+    if (_.keys(_data.pool).length === 0) {
+      _data.pool = global.TJ_2020_BASE_DATA;
+      _data.loted = [];
+    }
+    
     const hasData = _data.total.length !== 0 || _data.lot.length !== 0;
     const totalNum = _data.total.length + _.flatten(_data.lot).length;
     // 总数输入框状态
