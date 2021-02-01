@@ -59,10 +59,15 @@ body {
 
 /* 背景音乐开关 */
 #btn-bgm-switch {
-  position: absolute;
+  z-index: 2000;
+  position: fixed;
   left: 0;
   top: 40px;
+  width: 200px;
+  height: 200px;
+  cursor: pointer;
 }
+
 #btn-bgm {
   position: absolute;
   right: 5px;
@@ -347,9 +352,10 @@ body {
   z-index: 10000;
   transition: opacity 500ms;
   opacity: 0;
-  height: 20px;
-  line-height: 20px;
-  width: 40px;
+  height: 30px;
+  line-height: 30px;
+  width: 50px;
+  font-size: 16px;
   text-align: center;
   background: #ff9e12;
 }
