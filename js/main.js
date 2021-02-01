@@ -200,10 +200,10 @@
   // 音乐开启/关闭
   function handleToggleMusic() {
     if (document.getElementById('bgm')) {
-      $(this).addClass('disabled');
+      $('#icon-bgm').addClass('disabled');
       $('#bgm').remove();
     } else {
-      $(this).removeClass('disabled');
+      $('#icon-bgm').removeClass('disabled');
       $('body').append(`<embed src="assets/bgm.mp3" loop=true autostart=true hidden=true id="bgm" volume="10"/>`);
     }
   }

@@ -68,7 +68,7 @@ body {
   cursor: pointer;
 }
 
-#btn-bgm {
+#icon-bgm {
   position: absolute;
   right: 5px;
   top: 5px;
@@ -81,7 +81,7 @@ body {
   cursor: pointer;
 }
 
-#btn-bgm.disabled::after {
+#icon-bgm.disabled::after {
   content: '';
   display: block;
   height: 28px;
