@@ -71,6 +71,12 @@
     $('#total-num').html(haslot.length + unlot.length);
   }
 
+  // 获取格式化后的数字
+  function getFormatedNumber(num) {
+    num = Number.isNaN(+num) ? 0 : +num;
+    return num < 10 ? `00${num}` : (num < 100 ? `0${num}` : num);
+  }
+
   // 获取抽奖模式 0-抽组 1-抽人 2-抽人(无分组)
   function getLotType() {
     const type = $('#lot-type-container > input[type="radio"]:checked').val() || 0;
@@ -104,8 +110,7 @@
       
       lotScrollTimer = start ? setInterval(function() {
         let num = Math.ceil(Math.random() * 999);
-        num = num < 10 ? `00${num}` : (num < 100 ? `0${num}` : num);
-        $('#lucky-number-text').html(num);
+        $('#lucky-number-text').html(getFormatedNumber(num));
       }, 15) : 0;
     }
   }
@@ -171,16 +176,20 @@
       }
       // 只有抽了人才需要更新数据
       updateData();
+      // 最后一个数字
+      let lastNum = 0;
       // 定义递归方法
       const setNum = function() {
         if (curr.length > 0) {
-          const n = curr.shift();
-          pushToBoard(n);
+          lastNum = curr.shift();
+          pushToBoard(lastNum);
           setTimeout(function() {
             setNum();
           }, 800);
         } else {
           stopFunc();
+          // 把最后一个数字记录到
+          $('#lucky-number-text').html(getFormatedNumber(_.get(lastNum, 'number')));
         }
       };
       // 开始执行
@@ -286,7 +295,7 @@
     // 绑定结果按钮事件
     $('#result-btn').on('click', handleToggleResult);
     // 绑定音乐开始与关闭
-    $('#btn-bgm').on('click', handleToggleMusic);
+    $('#btn-bgm-switch').on('click', handleToggleMusic);
     // 绑定切换抽取模式
     $('#lot-type-container > input').on('change', handleChangeLotType)
     // 绑定foot显示/隐藏
