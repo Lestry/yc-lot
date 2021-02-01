@@ -19,6 +19,7 @@ window.TJ_2020_BASE_DATA = {
     { "account": "shizh01", "name": "史志恒", "number": "56" },
     { "account": "huangxy", "name": "黄雪燕", "number": "95" },
     { "account": "chenl23", "name": "陈玲（公共团队）", "number": "82" },
+    // 孙博
     { "account": "pengb04", "name": "彭彬", "number": "03" },
     { "account": "wudy01", "name": "吴德源", "number": "93" },
     { "account": "chenzx05", "name": "陈昭熙", "number": "26" },
@@ -65,7 +66,7 @@ window.TJ_2020_BASE_DATA = {
     { "account": "youm02", "name": "游敏", "number": "119" },
     { "account": "huanglz01", "name": "黄利忠", "number": "121" },
     { "account": "pengy05", "name": "彭杨（云空间）", "number": "112" },
-    // 孙博
+    // 乔胜
   ],
   "E": [
     { "account": "yuanlt01", "name": "袁莉婷(云业务)", "number": "122" },
@@ -125,7 +126,8 @@ window.TJ_2020_BASE_DATA = {
     // 唐建霖
     { "account": "jink01", "name": "金凯", "number": "107" },
     { "account": "lixy08", "name": "李小勇", "number": "23" },
-    { "account": "duanyy03", "name": "段阳阳", "number": "06" }
+    { "account": "duanyy03", "name": "段阳阳", "number": "06" },
+    { "account": "caoll", "name": "曹玲丽", "number": "20" }
   ],
   "H": [
     { "account": "zhouxy", "name": "周小燕", "number": "69" },
@@ -139,8 +141,5 @@ window.TJ_2020_BASE_DATA = {
     { "account": "panlq01", "name": "潘龙泉", "number": "110" },
     { "account": "qianwj01", "name": "钱文军", "number": "64" },
     { "account": "huwl", "name": "胡外徕", "number": "15" }
-  ],
-  "miss": [
-    { "account": "caoll", "name": "曹玲丽", "number": "20" }
   ]
 };
