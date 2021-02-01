@@ -307,10 +307,11 @@ body {
 /* 抽奖结果面板 */
 #result-panel {
   display: none;
-  width: 1270px;
+  width: 90%;
   position: absolute;
-  left: 380px;
+  left: 50%;
   top: 70px;
+  transform: translateX(-50%);
   font-size: 24px;
   color: #ff3e3e;
   padding: 16px;
